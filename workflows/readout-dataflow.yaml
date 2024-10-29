@@ -138,6 +138,10 @@ defaults:
       - ctp-reco-12dec-HI-ZNC-TCE
       - ctp-reco-qc
       - ctp-reco-3dec-qc
+      - ctp-reco-HI-ZNC-TCE-qc
+      - ctp-reco-3dec-HI-ZNC-TCE-qc
+      - ctp-reco-6dec-HI-ZNC-TCE-qc
+      - ctp-reco-12dec-HI-ZNC-TCE-qc
       - minimal-dpl
       - ctp-raw-qc 
   ctp_qc_remote_workflow: !public
@@ -839,6 +843,7 @@ defaults:
       - none
       - minimal-dpl
       - zdc-raw-qc
+      - zdc-full-qcmn-local
       - qc-daq
       - qcmn-daq-local
   zdc_qc_remote_workflow: !public
@@ -851,6 +856,7 @@ defaults:
     values:
       - none
       - zdc-rec-epn
+      - zdc-full-qcmn-remote
       - qcmn-daq-remote
     visibleif: $$qc_remote_enabled === "true"
   zdc_dcs_sor_parameters: !public
@@ -1397,6 +1403,7 @@ defaults:
   ###############################
   bookkeeping_enabled: "true"
   bookkeeping_consuming_kafka: "false"
+  bookkept: "true"
   ccdb_enabled: "false"
   dpl_workflow: none
   dpl_command: none
@@ -1723,6 +1730,16 @@ roles:
           trigger: DESTROY
           timeout: "{{ roc_cleanup_timeout }}"
           critical: false
+      - name: its-cru-enable
+        enabled: "{{ detector == 'ITS' }}"
+        vars:
+          shell_command: "source /etc/profile.d/o2.sh && O2_PARTITION={{environment_id}} O2_ROLE={{it}} O2_DETECTOR=ITS /opt/o2-roc-serial-update/workspace/cru_enable_card.sh"
+          user: flp
+        task:
+          load: "shell-command"
+          trigger: DESTROY
+          timeout: 10s
+          critical: true
   - name: qc-servers
     enabled: "{{ qc_remote_enabled == 'true' }}"
     constraints:
