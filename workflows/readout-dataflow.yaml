@@ -35,7 +35,7 @@ defaults:
     description: "Enable/disable running workflows on the QC nodes"
     widget: checkBox
     panel: "General_Configuration"
-    index: 3    
+    index: 3
   trg_enabled: !public
     value: "false"
     type: bool
@@ -129,7 +129,7 @@ defaults:
       - ctp-reco-12dec-HI-ZNC-TCE-qc
       - ctp-reco-16dec-HI-ZNC-TCE-qc
       - minimal-dpl
-      - ctp-raw-qc 
+      - ctp-raw-qc
   ctp_qc_remote_workflow: !public
     value: "none"
     type: string
@@ -252,7 +252,7 @@ defaults:
       - foc-pad-pedestal-calib
       - foc-reconstructor
       - foc-reconstructor-qc
-      - foc-qc 
+      - foc-qc
   ft0_dpl_workflow: !public
     value: "none"
     type: string
@@ -660,6 +660,7 @@ defaults:
       - tpc-idc-sac-full-split
       - tpc-idc-sac-cmv-full-split
       - tpc-sac-cmv-full-split
+      - tpc-idc-sac-cmv-full-split-proxy
   tpc_qc_remote_workflow: !public
     value: "none"
     type: string
