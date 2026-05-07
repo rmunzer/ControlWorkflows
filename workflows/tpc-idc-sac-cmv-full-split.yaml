@@ -1,4 +1,4 @@
-name: tpc-idc-sac-full-split
+name: tpc-idc-sac-cmv-full-split
 defaults:
   ccdb_path: "http://o2-ccdb.internal"
   tpc_sac_try_realign: 0
@@ -6,12 +6,12 @@ defaults:
   tpc_idc_pedestal_timestamp : 1715236056769
   bookkept: "false"
 roles:
-  - name: tpc-idc-a
+  - name: tpc-idc-cmv-a
     defaults:
       merger_port: 29950
     enabled: "{{ util.SuffixInRange(it, 'alio2-cr1-flp', '001', '072') }}"
     include: "{{ dpl.GenerateFromUri('tpc-idc-cmv-a') }}"
-  - name: tpc-idc-c
+  - name: tpc-idc-cmv-c
     defaults:
       merger_port: 29950
     enabled: "{{ util.SuffixInRange(it, 'alio2-cr1-flp', '073', '144') }}"

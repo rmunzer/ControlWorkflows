@@ -6,18 +6,18 @@ defaults:
   tpc_idc_pedestal_timestamp : 1715236056769
   bookkept: "false"
 roles:
-  - name: tpc-idc-a
+  - name: tpc-idc-cmv-a-split-proxy
     defaults:
-      merger_port: 29950
-      merger_port_2: 29952
+      merger_port_idc: 29950
+      merger_port_cmv: 29952
     enabled: "{{ util.SuffixInRange(it, 'alio2-cr1-flp', '001', '072') }}"
-    include: "{{ dpl.GenerateFromUri('tpc-cmv-split-proxy') }}"
-  - name: tpc-idc-c
+    include: "{{ dpl.GenerateFromUri('tpc-idc-cmv-a-split-proxy') }}"
+  - name: tpc-idc-cmv-c-split-proxy
     defaults:
-      merger_port: 29950
-      merger_port_2: 29952
+      merger_port_idc: 29950
+      merger_port_cmv: 29952
     enabled: "{{ util.SuffixInRange(it, 'alio2-cr1-flp', '073', '144') }}"
-    include: "{{ dpl.GenerateFromUri('tpc-cmv-split-proxy') }}"
+    include: "{{ dpl.GenerateFromUri('tpc-idc-cmv-c-split-proxy') }}"
   - name: tpc-sac
     defaults:
       merger_port: 29951
